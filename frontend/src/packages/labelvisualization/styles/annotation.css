@@ -1,0 +1,20 @@
+.annotation > text {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+/* annotation label */
+.annotation > .label {
+    stroke-width: 0.75;
+}
+.annotation:hover > .label {
+    stroke-width: 2px;
+}
+
+/* span within the sentence */
+.annotation > .span {
+    opacity: 0.1;
+}
+.annotation:hover > .span {
+    opacity: 0.45;
+}

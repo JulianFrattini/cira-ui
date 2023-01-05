@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import LabelView from '../packages/labelvis/LabelView'
+import LabelVisualizer from '../packages/labelvisualization/LabelVisualizer'
 
 import './../styles/App.css'
 
@@ -105,8 +105,10 @@ function App() {
         <input type='text' id='sentence' onChange={e => setSentence(e.target.value)} value={sentence} ></input>
         <input type="submit" value='Analyze'></input>
       </form>
-      <div id='bratcanvas'></div>
-      <LabelView sentence={sentence} labels={labels}></LabelView>
+      {
+        labels.length > 0 &&
+        <LabelVisualizer text={sentence} labels={labels}></LabelVisualizer>
+      }
     </div>
   );
 }
