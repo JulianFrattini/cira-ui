@@ -30,11 +30,11 @@ function App() {
   const analyze = (e) => {
     e.preventDefault()
 
-    setLabels(msentence4.labels)
-    setCeg(msentence4.graph)
+    //setLabels(msentence4.labels)
+    //setCeg(msentence4.graph)
 
-    /*fetch('http://localhost:8000/api/label', {
-      method: 'GET',
+    fetch('http://localhost:8000/api/label', {
+      method: 'PUT',
       headers: {
         "Content-Type": "application/json"
       },
@@ -43,11 +43,31 @@ function App() {
       })
     }).then(res => res.json())
       .then(labels => {
-        console.log(labels)
+        //console.log(labels);
+        setLabels(labels.labels);
+      })
+      .then(() => {
+        //console.log(typeof(labels));
+        //console.log(typeof(labels.labels))
+        return fetch('http://localhost:8000/api/graph', {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            "sentence": sentence,
+            "labels": labels.labels
+          })
+        });
+      })
+      .then(res => res.json())
+      .then(graph => {
+        //console.log(graph)
+        setCeg(graph.graph)
       })
       .catch(function(error) {
         console.error(error)
-      });*/
+      });
   }
 
   return (

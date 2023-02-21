@@ -7,5 +7,5 @@ RUN npm install --save
 COPY src /frontend/src/
 COPY public /frontend/public/
 
-EXPOSE 5000
+EXPOSE 3000
 CMD npm run build && npm run production
