@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
+import './../styles/App.css'
 
 import LabelVisualizer from '../packages/labelvisualization/LabelVisualizer'
 
-import './../styles/App.css'
+import msentence4 from '../util/sentences/sentence-4'
+
 
 function App() {
 
   const [version, setVersion] = useState("")
 
-  const [sentence, setSentence] = useState("If a user registers then the server sends a welcome message to him.")
+  const [sentence, setSentence] = useState(msentence4.sentence)
   const [labels, setLabels] = useState([])
 
   const pipeline_health = (e) => {
@@ -26,61 +28,7 @@ function App() {
   const analyze = (e) => {
     e.preventDefault()
 
-    setLabels([
-      {
-        "id": "L0",
-        "name": "Cause1",
-        "begin": 3,
-        "end": 19,
-        "successor": {
-          "id": "L1",
-          "junctor": null
-        },
-        "children": [
-          "L2",
-          "L4"
-        ]
-      },
-      {
-        "id": "L1",
-        "name": "Effect1",
-        "begin": 25,
-        "end": 66,
-        "successor": null,
-        "children": [
-          "L3",
-          "L5"
-        ]
-      },
-      {
-        "id": "L2",
-        "name": "Variable",
-        "begin": 3,
-        "end": 9,
-        "parent": "L0"
-      },
-      {
-        "id": "L3",
-        "name": "Variable",
-        "begin": 25,
-        "end": 35,
-        "parent": "L1"
-      },
-      {
-        "id": "L4",
-        "name": "Condition",
-        "begin": 10,
-        "end": 19,
-        "parent": "L0"
-      },
-      {
-        "id": "L5",
-        "name": "Condition",
-        "begin": 36,
-        "end": 66,
-        "parent": "L1"
-      }
-    ])
+    setLabels(msentence4.labels)
 
     /*fetch('http://localhost:8000/api/label', {
       method: 'GET',
