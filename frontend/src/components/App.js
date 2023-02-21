@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './../styles/App.css'
 
 import LabelVisualizer from '../packages/labelvisualization/LabelVisualizer'
+import CEGVisualizer from '../packages/graphvisualization/CEGVisualizer'
 
 import msentence4 from '../util/sentences/sentence-4'
 
@@ -12,6 +13,7 @@ function App() {
 
   const [sentence, setSentence] = useState(msentence4.sentence)
   const [labels, setLabels] = useState([])
+  const [ceg, setCeg] = useState(null)
 
   const pipeline_health = (e) => {
     e.preventDefault()
@@ -29,6 +31,7 @@ function App() {
     e.preventDefault()
 
     setLabels(msentence4.labels)
+    setCeg(msentence4.graph)
 
     /*fetch('http://localhost:8000/api/label', {
       method: 'GET',
@@ -53,10 +56,8 @@ function App() {
         <input type='text' id='sentence' onChange={e => setSentence(e.target.value)} value={sentence} ></input>
         <input type="submit" value='Analyze'></input>
       </form>
-      {
-        labels.length > 0 &&
-        <LabelVisualizer text={sentence} labels={labels}></LabelVisualizer>
-      }
+      {labels.length > 0 && <LabelVisualizer text={sentence} labels={labels}></LabelVisualizer>}
+      {ceg != null && <CEGVisualizer ceg={ceg}></CEGVisualizer>}
     </div>
   );
 }
