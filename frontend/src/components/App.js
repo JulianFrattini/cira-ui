@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './../styles/App.css'
 
 import LabelVisualizer from '../packages/labelvisualization/LabelVisualizer'
+import CEGVisualizer from '../packages/graphvisualization/CEGVisualizer'
 
 import msentence4 from '../util/sentences/sentence-4'
 
@@ -12,6 +13,7 @@ function App() {
 
   const [sentence, setSentence] = useState(msentence4.sentence)
   const [labels, setLabels] = useState([])
+  const [ceg, setCeg] = useState(null)
 
   const pipeline_health = (e) => {
     e.preventDefault()
@@ -28,10 +30,11 @@ function App() {
   const analyze = (e) => {
     e.preventDefault()
 
-    setLabels(msentence4.labels)
+    //setLabels(msentence4.labels)
+    //setCeg(msentence4.graph)
 
-    /*fetch('http://localhost:8000/api/label', {
-      method: 'GET',
+    fetch('http://localhost:8000/api/label', {
+      method: 'PUT',
       headers: {
         "Content-Type": "application/json"
       },
@@ -40,11 +43,31 @@ function App() {
       })
     }).then(res => res.json())
       .then(labels => {
-        console.log(labels)
+        //console.log(labels);
+        setLabels(labels.labels);
+      })
+      .then(() => {
+        //console.log(typeof(labels));
+        //console.log(typeof(labels.labels))
+        return fetch('http://localhost:8000/api/graph', {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            "sentence": sentence,
+            "labels": labels.labels
+          })
+        });
+      })
+      .then(res => res.json())
+      .then(graph => {
+        //console.log(graph)
+        setCeg(graph.graph)
       })
       .catch(function(error) {
         console.error(error)
-      });*/
+      });
   }
 
   return (
@@ -53,10 +76,8 @@ function App() {
         <input type='text' id='sentence' onChange={e => setSentence(e.target.value)} value={sentence} ></input>
         <input type="submit" value='Analyze'></input>
       </form>
-      {
-        labels.length > 0 &&
-        <LabelVisualizer text={sentence} labels={labels}></LabelVisualizer>
-      }
+      {labels.length > 0 && <LabelVisualizer text={sentence} labels={labels}></LabelVisualizer>}
+      {ceg != null && <CEGVisualizer ceg={ceg}></CEGVisualizer>}
     </div>
   );
 }
