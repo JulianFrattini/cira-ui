@@ -10,7 +10,7 @@ function LabelVisualizer({ text, labels }) {
     useEffect(() => {
         // once the component (especially the sentence) is rendered, make the labels eligible for rendering as well
         setRenderlabels(labels);
-    }, []);
+    }, [labels]);
 
     // determine the position of a character within a rendered text element
     const getposition = (index) => {
