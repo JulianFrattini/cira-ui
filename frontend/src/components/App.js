@@ -13,17 +13,14 @@ function App() {
   const [labels, setLabels] = useState([])
   const [ceg, setCeg] = useState(null)
 
-  const pipeline_health = (e) => {
-    e.preventDefault()
-    setVersion('v1.0')
-    /*fetch('http://localhost:8000/api/health', {
-      method: 'get'
-    }).then(res => res.json())
-      .then(heartbeat => console.log(heartbeat))
-      .catch(function(error) {
-        console.error(error)
-      });*/
-  }
+  // get the heartbeat
+  fetch('http://localhost:8000/api/health', {
+    method: 'get'
+  }).then(res => res.json())
+    .then(heartbeat => setVersion(heartbeat["cira-version"]))
+    .catch(function(error) {
+      console.error(error)
+    });
 
   const analyze = (e) => {
     e.preventDefault()
@@ -38,12 +35,9 @@ function App() {
       })
     }).then(res => res.json())
       .then(labels => {
-        //console.log(labels);
         setLabels(labels.labels);
       })
       .then(() => {
-        //console.log(typeof(labels));
-        //console.log(typeof(labels.labels))
         return fetch('http://localhost:8000/api/graph', {
           method: 'PUT',
           headers: {
@@ -57,7 +51,6 @@ function App() {
       })
       .then(res => res.json())
       .then(graph => {
-        //console.log(graph)
         setCeg(graph.graph)
       })
       .catch(function(error) {
@@ -67,6 +60,7 @@ function App() {
 
   return (
     <div className="App">
+      <p>{version}</p>
       <form onSubmit={(e) => analyze(e)}>
         <input type='text' id='sentence' onChange={e => setSentence(e.target.value)} value={sentence} ></input>
         <input type="submit" value='Analyze'></input>
