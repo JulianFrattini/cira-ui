@@ -4,14 +4,12 @@ import './../styles/App.css'
 import LabelVisualizer from '../packages/labelvisualization/LabelVisualizer'
 import CEGVisualizer from '../packages/graphvisualization/CEGVisualizer'
 
-import msentence4 from '../util/sentences/sentence-4'
-
 
 function App() {
 
   const [version, setVersion] = useState("")
 
-  const [sentence, setSentence] = useState(msentence4.sentence)
+  const [sentence, setSentence] = useState("When the red button is pushed or the power fails the system shuts down.")
   const [labels, setLabels] = useState([])
   const [ceg, setCeg] = useState(null)
 
@@ -29,9 +27,6 @@ function App() {
 
   const analyze = (e) => {
     e.preventDefault()
-
-    //setLabels(msentence4.labels)
-    //setCeg(msentence4.graph)
 
     fetch('http://localhost:8000/api/label', {
       method: 'PUT',
