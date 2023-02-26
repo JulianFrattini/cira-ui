@@ -8,4 +8,4 @@ COPY src /frontend/src/
 COPY public /frontend/public/
 
 EXPOSE 3000
-CMD npm run build && npm run production
+CMD npm run build && npm run start
