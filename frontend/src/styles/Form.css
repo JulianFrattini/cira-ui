@@ -1,0 +1,37 @@
+.submit-form {
+    width: 100%;
+}
+
+/* input forms */
+input[type=text], select {
+    width: 80%;
+    padding: 12px 16px;
+    margin: 8px 6px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 18%;
+    color: white;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:disabled {
+    background-color: var(--bg-disabled);
+}
+
+input[type=submit]:enabled {
+    background-color: var(--bg);
+}
+
+input[type=submit]:hover:enabled {
+    background-color: var(--bg-good);
+    color: var(--text-color-dark)
+}
