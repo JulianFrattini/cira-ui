@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import '../styles/Form.css'
+
 import LabelVisualizer from '../packages/labelvisualization/LabelVisualizer'
 import CEGVisualizer from '../packages/graphvisualization/CEGVisualizer'
 
@@ -63,7 +65,8 @@ function Core() {
 
     return (
         <div className="core">
-            <form onSubmit={(e) => analyze(e)}>
+            <p>Enter a causal requirements and click 'analyze' to automatically identify the embedded causal relationship.</p>
+            <form className='submit-form' onSubmit={(e) => analyze(e)}>
                 <input type='text' id='sentence' onChange={e => setFieldSentence(e.target.value)} value={fieldSentence} autoFocus></input>
                 <input type="submit" value='Analyze'></input>
             </form>
