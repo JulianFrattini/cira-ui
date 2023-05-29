@@ -7,6 +7,7 @@ import CEGVisualizer from '../packages/graphvisualization/CEGVisualizer'
 
 
 function Core() {
+    const [serverResponding, setServerResponding] = useState(false)
 
     const [fieldSentence, setFieldSentence] = useState("When the red button is pushed or the power fails the system shuts down.")
     const [analyzing, setAnalyzing] = useState(false)
@@ -54,6 +55,21 @@ function Core() {
         }
     }, [sentence]);
 
+    // heartbeat
+    useEffect(() => {
+        fetch('http://localhost:8000/api/health', {
+            method: 'get'
+        }).then(res => res.json())
+            .then(heartbeat => {
+                if (Object.hasOwn(heartbeat, "status")) {
+                    setServerResponding(true);
+                }
+            })
+            .catch(function (error) {
+                console.error(error)
+            });
+    }, [])
+
     const analyze = (e) => {
         e.preventDefault();
 
@@ -68,7 +84,7 @@ function Core() {
             <p>Enter a causal requirements and click 'analyze' to automatically identify the embedded causal relationship.</p>
             <form className='submit-form' onSubmit={(e) => analyze(e)}>
                 <input type='text' id='sentence' onChange={e => setFieldSentence(e.target.value)} value={fieldSentence} autoFocus></input>
-                <input type="submit" value='Analyze'></input>
+                <input type="submit" value='Analyze' disabled={!serverResponding}></input>
             </form>
             {!analyzing && labels.length > 0 &&
                 <div>
