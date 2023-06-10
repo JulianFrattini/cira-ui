@@ -6,6 +6,8 @@
 
 This repository contains a web-based application which provides a user interface for the [CiRA functionality](https://github.com/JulianFrattini/cira).
 
+![Visualization of the CiRA functionality in the UI](./documentation/images/cira-ui-visualization.PNG)
+
 ## Usage
 
 The CiRA UI is built on top of a `core`, which implements the CiRA functionality and exposes it via a REST-ful API, and a `frontend` providing a graphical user interface. To use the CiRA UI, make sure to have [docker](https://www.docker.com/) installed, which takes care of setting up both the `core` and the `frontend`. 
