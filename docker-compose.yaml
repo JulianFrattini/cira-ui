@@ -5,7 +5,7 @@ services:
     build: ./frontend
     container_name: frontend
     depends_on:
-      - base
+      - core
     environment:
       - HOST=0.0.0.0
       - PORT=3000
@@ -13,7 +13,7 @@ services:
       - "3000:3000"
     command: npm run start
 
-  base:
+  core:
     container_name: pipeline
     image: ghcr.io/julianfrattini/cira:0.9.4
     restart: always
