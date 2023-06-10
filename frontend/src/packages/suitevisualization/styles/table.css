@@ -1,0 +1,44 @@
+/* Table listing items */
+table {
+    text-align: left;
+    margin: 20px 0;
+}
+
+thead>tr>th {
+    background: rgb(231, 231, 231);
+    font-weight: bold;
+}
+
+.th_input {
+    background: #d46371;
+}
+
+.th_output {
+    background: #7fa2ff;
+}
+
+.t_span {
+    width: 99%;
+}
+
+th, td {
+    padding: 5px;
+}
+
+.tcol_icon {
+    width: 20px;
+    cursor: help;
+    text-align: center;
+}
+
+.tcol_short {
+    width: 40px;
+}
+
+.tcol_highlight {
+    background-color: rgba(0, 225, 255, 0.1)
+}
+
+tbody>tr:hover {
+    background: #f5f5f5;
+}
