@@ -1,6 +1,7 @@
 # CiRA User Interface 
 
 [![GitHub](https://img.shields.io/github/license/JulianFrattini/cira-ui)](./LICENSE)
+[![DOI](https://zenodo.org/badge/571614601.svg)](https://zenodo.org/badge/latestdoi/571614601)
 
 ## Summary of Artifact
 
