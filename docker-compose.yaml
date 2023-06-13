@@ -15,8 +15,7 @@ services:
 
   core:
     container_name: pipeline
-    image: ghcr.io/julianfrattini/cira:0.9.4
-    restart: always
+    image: ghcr.io/julianfrattini/cira:0.9.6
     ports:
       - "8000:8000"
 
