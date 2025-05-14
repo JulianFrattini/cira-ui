@@ -31,9 +31,9 @@ body {
 }
 
 /* MEDIA QUERIES */
-@media (min-width: 1000px) {
+@media (min-width: 1200px) {
   body {
-    max-width: 1000px;
+    max-width: 1200px;
     text-align: left;
   }
 }

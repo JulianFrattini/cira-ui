@@ -58,13 +58,13 @@ const labeltypes = [
         "short": "&&",
         "descr": "A conjunction ('and') of two or more events means that all events must be true for the dependent event to be true.",
         "color": "#e8ff7f",
-        "level": "0"
+        "level": "1"
     }, {
         "label": "Disjunction",
         "short": "||",
         "descr": "A disjunction ('or') of two or more events means that at least one event must be true for the dependent event to be true.",
         "color": "#fffb7f",
-        "level": "0"
+        "level": "1"
     }
 ]
 
